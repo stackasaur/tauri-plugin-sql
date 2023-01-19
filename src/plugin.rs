@@ -210,6 +210,8 @@ async fn execute(
     for value in values {
         if value.is_string() {
             query = query.bind(value.as_str().unwrap().to_owned())
+        } else if value.is_null(){
+            query = query.bind(value.as_null());
         } else {
             query = query.bind(value);
         }
@@ -237,6 +239,8 @@ async fn select(
     for value in values {
         if value.is_string() {
             query = query.bind(value.as_str().unwrap().to_owned())
+        } else if value.is_null(){
+            query = query.bind(value.as_null());
         } else {
             query = query.bind(value);
         }
